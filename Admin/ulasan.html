@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin Wisata</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cca23c4d94.js" crossorigin="anonymous"></script>
+</head>
+<body class="text-white min-h-screen flex" style="background-color:#4c4c63">
+
+   <!-- Sidebar -->
+  <main class="ml-64 p-6">
+  <aside class="fixed top-0 left-0 w-64 h-screen p-6 flex flex-col justify-between" style="background-color:#2c2c39;">
+  
+  <!-- Bagian Atas: Logo & Menu -->
+  <div>
+    <h1 class="text-2xl font-bold mb-8 text-white">
+      <i class="fas fa-map-marked-alt mr-2"></i>Admin Wisata
+    </h1>
+    
+    <nav class="space-y-3">
+      <a href="index.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
+      </a>
+      <a href="wisata.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-map"></i><span>Tempat Wisata</span>
+      </a>
+      <a href="pengunjung.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-users"></i><span>Pengunjung</span>
+      </a>
+      <a href="ulasan.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-star"></i><span>Ulasan & Rating</span>
+      </a>
+      <a href="index.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-blog"></i><span>Blog</span>
+      </a>
+      <a href="profile.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-user-cog"></i><span>Admin / User</span>
+      </a>
+    </nav>
+
+    <div class="mt-8">
+      <a href="/login.html" class="flex items-center space-x-2 text-red-400 hover:text-purple-400">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bagian Bawah: Footer -->
+  <p class="text-xs text-white mt-6">Azi Saputra © 2025 All rights reserved.</p>
+
+</aside>
+
+
+ </main>
+
+  <!-- Main Content -->
+  <main class="flex-1 p-8 space-y-6">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <h2 class="text-3xl font-semibold">Ulasan</h2>
+      <span class=" text-white">Selamat datang di Ulasan Pengunjung!</span>
+    </div>
+    <hr>
+
+   
+  <div class="max-w-3xl mx-auto space-y-6">
+
+    <!-- Header -->
+    <h1 class="text-2xl font-bold border-b border-gray-700 pb-2">Ulasan Pengunjung</h1>
+
+      <!-- Ulasan 1 -->
+      <div class="p-4 rounded-lg" style="background-color:#2c2c39;"> 
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold">Budi</span>
+          <div class="text-yellow-400">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+          </div>
+        </div>
+        <p class="text-sm text-gray-300">Tempatnya sangat indah dan bersih, cocok untuk liburan keluarga!</p>
+      </div>
+
+      <!-- Ulasan 2 -->
+      <div class=" p-4 rounded-lg" style="background-color:#2c2c39;">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold">ZXY_ware</span>
+          <div class="text-yellow-400">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+          </div>
+        </div>
+        <p class="text-sm text-gray-300">Cukup menyenangkan, tapi fasilitas masih kurang.</p>
+      </div>
+      <!-- Ulasan 3 -->
+      <div class=" p-4 rounded-lg" style="background-color:#2c2c39;">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold">Randhika MZ</span>
+           <div class="text-yellow-400">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+          </div>
+        </div>
+        <p class="text-sm text-gray-300">Cukup menyenangkan, tapi fasilitas masih kurang.</p>
+      </div>
+      <!-- Ulasan 4 -->
+      <div class=" p-4 rounded-lg" style="background-color:#2c2c39;">
+        <div class="flex justify-between items-center mb-1">
+          <span class="font-bold">MR.Boon</span>
+           <div class="text-yellow-400">
+            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+          </div>
+        </div>
+        <p class="text-sm text-gray-300">Cukup menyenangkan, tapi fasilitas masih kurang.</p>
+      </div>
+
+    </div>
+  </div>
+
+  </main>
+
+</body>
+</html>

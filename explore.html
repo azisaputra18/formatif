@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>|Explorer</title>
+  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
+
+  <body
+    class="bg-black"
+    x-data="
+      {
+        scrolledFromTop: false
+      }
+    "
+    x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+  >
+    <!-- ==== Header Start ==== -->
+    <header
+      x-data="
+        {
+          navbarOpen: false,
+          submenuOpen: false
+        }
+      "
+      class="header top-0 left-0 flex w-full items-center bg-transparent transition fixed"
+      :class="scrolledFromTop ? 'z-50 bg-dark/70 shadow-sticky backdrop-blur-xs' : ' z-50' "
+    >
+      <div class="container">
+        <div class="relative mx-[-16px] flex items-center justify-between">
+          <div class="w-60 max-w-full px-4">
+            <a href="index.html" class="header-logo block w-full" :class="scrolledFromTop ? 'py-4 lg:py-2' : 'py-5 lg:py-7' ">
+              <img src="img/logo.png" alt="logo" class="h-10 max-w-full" />
+            </a>
+          </div>
+          <div class="flex w-full items-center justify-between px-4">
+            <div>
+              <button
+                @click="navbarOpen = !navbarOpen "
+                :class="navbarOpen && 'navbarTogglerActive' "
+                id="navbarToggler"
+                name="navbarToggler"
+                aria-label="navbarToggler"
+                class="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+              >
+                <span :class="navbarOpen && 'transform rotate-45 top-[7px]' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
+                <span :class="navbarOpen && 'opacity-0' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
+                <span :class="navbarOpen && 'top-[-8px] rotate-[135deg]' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
+              </button>
+              <nav
+                :class="!navbarOpen && 'hidden' "
+                id="navbarCollapse"
+                class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
+              >
+                <ul class="blcok lg:flex">
+                  <li class="group relative">
+                    <a href="index.html" class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"> Home </a>
+                  </li>
+                  <li class="group relative">
+                    <a href="explore-items.html" class="mx-8 flex py-2 text-base font-semibold text-white group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"> Explore </a>
+                  </li>
+                  <!-- <li class="group submenu-item relative">
+                    <a
+                      href="javascript:void(0)"
+                      @click="submenuOpen = !submenuOpen"
+                      class="relative mx-8 flex py-2 text-base font-semibold text-[#bababa] after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:translate-y-[-50%] after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 xl:ml-12"
+                    >
+                      Pages
+                    </a>
+                    <div
+                      :class="submenuOpen ? 'block' : 'hidden' "
+                      class="submenu relative top-full left-0 w-[250px] rounded-md bg-dark p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
+                    >
+                      <a href="explore-items.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Explore Items </a>
+
+                      <a href="item-details.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Item Details </a>
+                      <a href="create-item.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Create Item </a>
+
+                      <a href="connect-wallet.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Connect Wallet </a>
+                      <a href="support.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Support </a>
+                      <a href="signin.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Sign In Page </a>
+                      <a href="signup.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Sign Up Page </a>
+                    </div>
+                  </li> -->
+                  <li class="group relative">
+                    <a href="support.html" class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"> Support </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+              <div class="group relative hidden md:flex">
+                <button class="py-3 px-7 text-base font-semibold text-body-color transition hover:text-primary lg:px-4 xl:px-7" name="search" aria-label="search">
+                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M10.2917 3.25C12.1592 3.25 13.9503 3.99189 15.2709 5.31246C16.5914 6.63303 17.3333 8.4241 17.3333 10.2917C17.3333 12.0358 16.6942 13.6392 15.6433 14.8742L15.9358 15.1667H16.7917L22.2083 20.5833L20.5833 22.2083L15.1667 16.7917V15.9358L14.8742 15.6433C13.6392 16.6942 12.0358 17.3333 10.2917 17.3333C8.4241 17.3333 6.63303 16.5914 5.31246 15.2709C3.99189 13.9503 3.25 12.1592 3.25 10.2917C3.25 8.4241 3.99189 6.63303 5.31246 5.31246C6.63303 3.99189 8.4241 3.25 10.2917 3.25ZM10.2917 5.41667C7.58333 5.41667 5.41667 7.58333 5.41667 10.2917C5.41667 13 7.58333 15.1667 10.2917 15.1667C13 15.1667 15.1667 13 15.1667 10.2917C15.1667 7.58333 13 5.41667 10.2917 5.41667Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </button>
+                <div class="invisible absolute top-[110%] right-0 w-[250px] rounded-md bg-dark p-3 opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100">
+                  <form class="flex">
+                    <input type="text" placeholder="Search here..." class="w-full bg-transparent py-2 px-4 text-white outline-hidden" />
+                    <button class="text-white" name="search-button" aria-label="search-button">
+                      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M10.2917 3.25C12.1592 3.25 13.9503 3.99189 15.2709 5.31246C16.5914 6.63303 17.3333 8.4241 17.3333 10.2917C17.3333 12.0358 16.6942 13.6392 15.6433 14.8742L15.9358 15.1667H16.7917L22.2083 20.5833L20.5833 22.2083L15.1667 16.7917V15.9358L14.8742 15.6433C13.6392 16.6942 12.0358 17.3333 10.2917 17.3333C8.4241 17.3333 6.63303 16.5914 5.31246 15.2709C3.99189 13.9503 3.25 12.1592 3.25 10.2917C3.25 8.4241 3.99189 6.63303 5.31246 5.31246C6.63303 3.99189 8.4241 3.25 10.2917 3.25ZM10.2917 5.41667C7.58333 5.41667 5.41667 7.58333 5.41667 10.2917C5.41667 13 7.58333 15.1667 10.2917 15.1667C13 15.1667 15.1667 13 15.1667 10.2917C15.1667 7.58333 13 5.41667 10.2917 5.41667Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ==== Header End ==== -->
+
+    <!-- ==== Breadcrumb Section Start ==== -->
+    <section class="pt-[150px] pb-24">
+      <div class="container">
+        <div class="rounded-lg border-2 border-stroke bg-bg-color py-5 px-8">
+          <ul class="flex items-center">
+            <li class="flex items-center text-base font-medium text-white">
+              <a href="javascript:void(0)" class="text-white hover:text-primary"> Home </a>
+              <span class="px-3"> / </span>
+            </li>
+            <li class="flex items-center text-base font-medium text-white">Explore</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <!-- ==== Breadcrumb Section End ==== -->
+
+    <!-- ==== NFT Items Section Start ==== -->
+    <section class="pt-8 pb-24">
+      
+      <div class="container">
+        <div class="mb-14 rounded-lg border-2 border-stroke py-4 px-5">
+          <div class="-mx-4 flex flex-wrap items-center justify-between">
+            <div class="w-full px-4 lg:w-7/12">
+              <div class="flex space-x-3 overflow-x-auto pb-8 lg:pb-0">
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary">
+                  All
+                </button>
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary">
+                  Beach
+                </button>
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary">
+                  Temple
+                </button>
+                <button class="inline-flex items-center justify-center whitespace-nowrap rounded-md bg-[#353444] py-[10px] px-5 text-base font-semibold text-white transition-all hover:bg-primary">
+                  Others
+                </button>
+              </div>
+            </div>
+            <div class="w-full px-4 lg:w-5/12">
+              <div class="flex space-x-3 lg:justify-end">
+                <div class="relative inline-flex">
+                </div>
+                <div class="relative inline-flex">
+                  <select class="appearance-none rounded-md bg-[#353444] py-3 pl-5 pr-10 text-base font-semibold text-white outline-hidden">
+                    <option value="" selected>Sort By</option>
+                    <option value="">Top rate</option>
+                    <option value="">Mid rate</option>
+                    <option value="">Low rate</option>
+                  </select>
+                  <span class="absolute right-5 top-1/2 -translate-y-1/2">
+                    <svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M1.41 0.580078L6 5.17008L10.59 0.580078L12 2.00008L6 8.00008L0 2.00008L1.41 0.580078Z" fill="white" />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="-mx-4 flex flex-wrap">
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Borobudur.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+                  <span class="pl-1 text-xs font-semibold text-black"> 4.6K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Candi Borobudur</a></h3>
+                      
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5">
+                      
+                        Gates of Heaven in Bali, officially known as Pura Lempuyang, is a temple famous for its unique gate that looks like a gate to heaven.
+                        </span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/bali.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+                  <span class="pl-1 text-xs font-semibold text-black"> 4.6K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Gates of Heaven</a></h3>
+                      
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5">
+                      Candi Borobudur adalah candi Buddha Mahayana terbesar di dunia, yang terletak di Magelang, Jawa Tengah, Indonesia.
+                        </span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Pantai_Bali.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 6.6K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Pantai Kuta Mandalika</a></h3>
+
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> Pantai Kuta Mandalika di Lombok adalah pantai dengan pasir putih bersih yang membentang luas, air lautnya jernih dan biru, serta terdapat terumbu karang yang sehat.</span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Prambanan.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 5.6K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary">Candi Prambanan</a></h3>
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> Candi Prambanan adalah kompleks candi Hindu terbesar di Indonesia.</span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Diamond Beach.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 3.2K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Diamond Beach</a></h3>
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> Diamond Beach adalah pantai berpasir hitam di Islandia yang unik karena gunung es dari laguna Jokulsarlon terdampar di pantainya.</span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Temple.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 3.2K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Hindu Temple</a></h3>
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> Pura (kuil Hindu) di Bali adalah tempat ibadah dan pusat kegiatan spiritual bagi umat Hindu Bali.</span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Padar Island.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 3.2K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Diamond Beach</a></h3>
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> 
+                      Pulau Padar adalah salah satu pulau yang berada di kawasan Taman Nasional Komodo, Provinsi Nusa Tenggara Timur, Indonesia. </span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          <div class="w-full px-4 md:w-1/2 lg:w-1/3 2xl:w-1/4">
+            <div class="mb-10 rounded-xl border border-stroke bg-bg-color p-[18px]">
+              <div class="relative mb-5 overflow-hidden rounded-lg">
+                <img src="img/Karang Tawulan Beach.jpg" alt="auctions" class="w-full" />
+                <button class="absolute right-4 top-4 inline-flex items-center rounded-md bg-white px-2 py-1">
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M6.99999 11.8709L6.15416 11.1009C3.14999 8.37675 1.16666 6.57425 1.16666 4.37508C1.16666 2.57258 2.57832 1.16675 4.37499 1.16675C5.38999 1.16675 6.36416 1.63925 6.99999 2.38008C7.63582 1.63925 8.60999 1.16675 9.62499 1.16675C11.4217 1.16675 12.8333 2.57258 12.8333 4.37508C12.8333 6.57425 10.85 8.37675 7.84582 11.1009L6.99999 11.8709Z"
+                      fill="#F85486"
+                    />
+                  </svg>
+
+                  <span class="pl-1 text-xs font-semibold text-black"> 3.2K </span>
+                </button>
+              </div>
+                <div class="mb-3 flex items-center justify-between">
+                    <h3><a href="javascript:void(0)" class="mb-3 inline-block text-lg font-semibold text-white hover:text-primary"> Hindu Temple</a></h3>
+                    </div>
+                    <span class="block text-xs font-medium text-body-color mb-5"> Pura (kuil Hindu) di Bali adalah tempat ibadah dan pusat kegiatan spiritual bagi umat Hindu Bali.</span>
+                       <a href="javascript:void(0)" class="flex items-center justify-center rounded-md bg-primary py-3 px-4 text-sm font-semibold text-white transition-all hover:bg-primary/90 sm:px-5">
+                    View
+                    </a>
+                </div>
+              </div>
+          </div>
+          
+
+          <div class="w-full px-4">
+            <div class="pt-8 text-center">
+              <a
+                href="javascript:void(0)"
+                class="inline-flex items-center justify-center rounded-md border-2 border-white py-3 px-7 text-base font-semibold text-white transition-all hover:border-primary hover:bg-primary"
+              >
+                Load More...
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ==== NFT Items Section End ==== -->
+
+    <!-- ==== Footer Start ==== -->
+    <footer class="bg-bg-color pt-24">
+      <div class="container">
+        <div class="-mx-4 flex flex-wrap">
+          <div class="w-full px-4 sm:w-6/12 lg:w-3/12 xl:w-4/12">
+            <div class="mb-16">
+              <div class="max-w-[300px]">
+                <a href="index.html" class="mb-7 inline-block">
+                  <img src="src/images/logo.svg" alt="logo" class="h-10" />
+                </a>
+                <p class="mb-6 text-base font-medium text-body-color">Lorem ipsum dolor amet consectetur adipiscing elit do eiusmod tempor incididunt ut labore et dolore.</p>
+
+                <div class="flex items-center">
+                  <a href="javascript:void(0)" name="social-link" aria-label="social-link" class="mr-5 text-white hover:text-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                      <path
+                        d="M12 2.04C6.5 2.04 2 6.53 2 12.06C2 17.06 5.66 21.21 10.44 21.96V14.96H7.9V12.06H10.44V9.85C10.44 7.34 11.93 5.96 14.22 5.96C15.31 5.96 16.45 6.15 16.45 6.15V8.62H15.19C13.95 8.62 13.56 9.39 13.56 10.18V12.06H16.34L15.89 14.96H13.56V21.96C15.9164 21.5878 18.0622 20.3855 19.6099 18.5701C21.1576 16.7546 22.0054 14.4456 22 12.06C22 6.53 17.5 2.04 12 2.04Z"
+                      />
+                    </svg>
+                  </a>
+                  <a href="javascript:void(0)" name="social-link" aria-label="social-link" class="mr-5 text-white hover:text-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                      <path
+                        d="M22.46 6C21.69 6.35 20.86 6.58 20 6.69C20.88 6.16 21.56 5.32 21.88 4.31C21.05 4.81 20.13 5.16 19.16 5.36C18.37 4.5 17.26 4 16 4C13.65 4 11.73 5.92 11.73 8.29C11.73 8.63 11.77 8.96 11.84 9.27C8.27998 9.09 5.10998 7.38 2.99998 4.79C2.62998 5.42 2.41998 6.16 2.41998 6.94C2.41998 8.43 3.16998 9.75 4.32998 10.5C3.61998 10.5 2.95998 10.3 2.37998 10C2.37998 10 2.37998 10 2.37998 10.03C2.37998 12.11 3.85998 13.85 5.81998 14.24C5.45998 14.34 5.07998 14.39 4.68998 14.39C4.41998 14.39 4.14998 14.36 3.88998 14.31C4.42998 16 5.99998 17.26 7.88998 17.29C6.42998 18.45 4.57998 19.13 2.55998 19.13C2.21998 19.13 1.87998 19.11 1.53998 19.07C3.43998 20.29 5.69998 21 8.11998 21C16 21 20.33 14.46 20.33 8.79C20.33 8.6 20.33 8.42 20.32 8.23C21.16 7.63 21.88 6.87 22.46 6Z"
+                      />
+                    </svg>
+                  </a>
+                  <a href="javascript:void(0)" name="social-link" aria-label="social-link" class="mr-5 text-white hover:text-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                      <path
+                        d="M19 3C19.5304 3 20.0391 3.21071 20.4142 3.58579C20.7893 3.96086 21 4.46957 21 5V19C21 19.5304 20.7893 20.0391 20.4142 20.4142C20.0391 20.7893 19.5304 21 19 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H19ZM18.5 18.5V13.2C18.5 12.3354 18.1565 11.5062 17.5452 10.8948C16.9338 10.2835 16.1046 9.94 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17C14.6813 12.17 15.0374 12.3175 15.2999 12.5801C15.5625 12.8426 15.71 13.1987 15.71 13.57V18.5H18.5ZM6.88 8.56C7.32556 8.56 7.75288 8.383 8.06794 8.06794C8.383 7.75288 8.56 7.32556 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19C6.43178 5.19 6.00193 5.36805 5.68499 5.68499C5.36805 6.00193 5.19 6.43178 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56ZM8.27 18.5V10.13H5.5V18.5H8.27Z"
+                      />
+                    </svg>
+                  </a>
+                  <a href="javascript:void(0)" name="social-link" aria-label="social-link" class="mr-5 text-white hover:text-primary">
+                    <svg width="24" height="24" viewBox="0 0 24 24" class="fill-current">
+                      <path
+                        d="M10 15L15.19 12L10 9V15ZM21.56 7.17C21.69 7.64 21.78 8.27 21.84 9.07C21.91 9.87 21.94 10.56 21.94 11.16L22 12C22 14.19 21.84 15.8 21.56 16.83C21.31 17.73 20.73 18.31 19.83 18.56C19.36 18.69 18.5 18.78 17.18 18.84C15.88 18.91 14.69 18.94 13.59 18.94L12 19C7.81 19 5.2 18.84 4.17 18.56C3.27 18.31 2.69 17.73 2.44 16.83C2.31 16.36 2.22 15.73 2.16 14.93C2.09 14.13 2.06 13.44 2.06 12.84L2 12C2 9.81 2.16 8.2 2.44 7.17C2.69 6.27 3.27 5.69 4.17 5.44C4.64 5.31 5.5 5.22 6.82 5.16C8.12 5.09 9.31 5.06 10.41 5.06L12 5C16.19 5 18.8 5.16 19.83 5.44C20.73 5.69 21.31 6.27 21.56 7.17Z"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="w-full px-4 sm:w-6/12 lg:w-3/12 xl:w-3/12">
+            <div class="mb-16">
+              <h2 class="mb-8 text-2xl font-bold text-white">Company</h2>
+
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> About company </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Company services </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Job opportunities </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Contact us </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="w-full px-4 sm:w-6/12 lg:w-3/12 xl:w-2/12">
+            <div class="mb-16">
+              <h2 class="mb-8 text-2xl font-bold text-white">Customer</h2>
+
+              <ul>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Client support </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Latest news </a>
+                </li>
+                <li>
+                  <a href="javascript:void(0)" class="mb-4 inline-block text-base font-medium text-body-color transition hover:text-white"> Who we are </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="w-full px-4 sm:w-6/12 lg:w-3/12 xl:w-3/12">
+            <div class="mb-16">
+              <h2 class="mb-8 text-2xl font-bold text-white">Subscribe Now</h2>
+
+              <p class="mb-5 text-base font-medium text-body-color">Enter your email address for receiving valuable newsletters.</p>
+
+              <form class="relative">
+                <input
+                  type="email"
+                  placeholder="Enter your email address"
+                  class="h-12 w-full rounded-lg border border-stroke bg-transparent pl-5 pr-10 text-sm font-medium text-white outline-hidden focus:border-primary"
+                />
+                <button type="submit" name="submit" aria-label="submit" class="absolute right-[6px] top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-md bg-primary text-white">
+                  <svg width="20" height="20" viewBox="0 0 20 20" class="fill-current">
+                    <path d="M1.66669 17.5L19.1667 10L1.66669 2.5V8.33333L14.1667 10L1.66669 11.6667V17.5Z" />
+                  </svg>
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-stroke">
+          <div class="py-7 text-center">
+            <p class="text-base font-medium text-body-color">&copy; Copyright 2025 - Azi Saputra, All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- ==== Footer End ==== -->
+  <script defer src="bundle.js"></script><script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"934bb5ff2e2b4091","version":"2025.4.0-1-g37f21b1","r":1,"token":"9a6015d415bb4773a0bff22543062d3b","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
+</body>
+</html>
