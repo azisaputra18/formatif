@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard Admin Wisata</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/cca23c4d94.js" crossorigin="anonymous"></script>
+</head>
+<body class="text-white min-h-screen flex" style="background-color:#4c4c63">
+
+   <!-- Sidebar -->
+  <main class="ml-64 p-6">
+ <aside class="fixed top-0 left-0 w-64 h-screen p-6 flex flex-col justify-between" style="background-color:#2c2c39;">
+  
+  <!-- Bagian Atas: Logo & Menu -->
+  <div>
+    <h1 class="text-2xl font-bold mb-8 text-white">
+      <i class="fas fa-map-marked-alt mr-2"></i>Admin Wisata
+    </h1>
+    
+    <nav class="space-y-3">
+      <a href="index.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
+      </a>
+      <a href="wisata.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-map"></i><span>Tempat Wisata</span>
+      </a>
+      <a href="pengunjung.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-users"></i><span>Pengunjung</span>
+      </a>
+      <a href="ulasan.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-star"></i><span>Ulasan & Rating</span>
+      </a>
+      <a href="/index.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-blog"></i><span>Blog</span>
+      </a>
+      <a href="profile.html" class="flex items-center space-x-3 hover:text-purple-400 text-gray-300">
+        <i class="fas fa-user-cog"></i><span>Admin / User</span>
+      </a>
+    </nav>
+
+    <div class="mt-8">
+      <a href="/login.html" class="flex items-center space-x-2 text-red-400 hover:text-purple-400">
+        <i class="fas fa-sign-out-alt"></i>
+        <span>Logout</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Bagian Bawah: Footer -->
+  <p class="text-xs text-white mt-6">Azi Saputra © 2025 All rights reserved.</p>
+
+</aside>
+
+
+ </main>
+
+   <!-- Main Content -->
+  <main class="flex-1 p-8 space-y-6 text-white">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <h2 class="text-3xl font-semibold">Profile</h2>
+      <span class=" text-white">  <h2 class="mb-5 text-xl font-bold text-white">Nusantara Travel</h2></span>
+    </div>
+      <hr>
+
+     <div class="rounded-lg shadow-lg p-8 w-full max-w-5xl" style="background-color:#2c2c39;">
+    <h2 class="text-2xl font-bold text-white mb-6">Tambah User</h2>
+    <form action="#">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block text-gray-300 text-sm mb-1" for="nama">Nama</label>
+          <input type="text" id="nama" name="nama" placeholder="Contoh: Budi" class="w-full px-4 py-2 rounded bg-gray-500 text-white  focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+        <div>
+          <label class="block text-gray-300 text-sm mb-1" for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Contoh: budi@example.com" class="w-full px-4 py-2 rounded bg-gray-500 text-white   focus:outline-none focus:ring-2 focus:ring-purple-500">
+        </div>
+        <div>
+          <label class="block text-gray-300 text-sm mb-1" for="peran">Peran</label>
+          <select id="peran" name="peran" class="w-full px-4 py-2 rounded bg-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <option value="Admin">Admin</option>
+            <option value="Pengunjung">Pengunjung</option>
+            <option value="Editor">Editor</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-gray-300 text-sm mb-1" for="status">Status</label>
+          <select id="status" name="status" class="w-full px-4 py-2 rounded bg-gray-500 text-white focus:outline-none focus:ring-2 focus:ring-purple-500">
+            <option value="Aktif">Aktif</option>
+            <option value="Nonaktif">Nonaktif</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <label class="block text-gray-300 text-sm mb-1" for="deskripsi">Deskripsi</label>
+        <textarea id="deskripsi" name="deskripsi" placeholder="Tulis deskripsi singkat..." class="w-full px-4 py-2 rounded bg-gray-500 text-white   focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+      </div>
+
+      <div class="mt-6">
+        <button type="submit" class="px-6 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition duration-200">
+          Simpan
+        </button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

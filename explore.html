@@ -4,107 +4,135 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>|Explorer</title>
-  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
+    <title>Nusantara Travel|Explorer</title>
+    <link rel="icon" href="favicon.ico" />
+    <link href="style.css" rel="stylesheet" />
+  </head>
 
   <body
     class="bg-black"
-    x-data="
-      {
-        scrolledFromTop: false
-      }
-    "
-    x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
-    @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    x-data="{ scrolledFromTop: window.pageYOffset >= 50, navbarOpen: false }"
+    @scroll.window="scrolledFromTop = window.pageYOffset >= 50"
   >
     <!-- ==== Header Start ==== -->
     <header
-      x-data="
-        {
-          navbarOpen: false,
-          submenuOpen: false
-        }
-      "
-      class="header top-0 left-0 flex w-full items-center bg-transparent transition fixed"
-      :class="scrolledFromTop ? 'z-50 bg-dark/70 shadow-sticky backdrop-blur-xs' : ' z-50' "
+      :class="scrolledFromTop
+        ? 'z-50 bg-dark/70 shadow-sticky backdrop-blur-xs fixed top-0 left-0 flex w-full items-center transition'
+        : 'z-50 fixed top-0 left-0 flex w-full items-center transition bg-transparent'"
     >
       <div class="container">
         <div class="relative mx-[-16px] flex items-center justify-between">
           <div class="w-60 max-w-full px-4">
-            <a href="index.html" class="header-logo block w-full" :class="scrolledFromTop ? 'py-4 lg:py-2' : 'py-5 lg:py-7' ">
-              <img src="img/logo.png" alt="logo" class="h-10 max-w-full" />
+            <a
+              href="index.html"
+              class="header-logo block w-full transition-padding duration-300"
+              :class="scrolledFromTop ? 'py-4 lg:py-2' : 'py-5 lg:py-7'"
+            >
+              <h2 class="mb-5 text-xl font-bold text-white">Nusantara Travel</h2>
             </a>
           </div>
+
           <div class="flex w-full items-center justify-between px-4">
-            <div>
+            <div class="relative w-full lg:w-auto">
+              <!-- Hamburger Button -->
               <button
-                @click="navbarOpen = !navbarOpen "
-                :class="navbarOpen && 'navbarTogglerActive' "
-                id="navbarToggler"
-                name="navbarToggler"
-                aria-label="navbarToggler"
-                class="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                @click="navbarOpen = !navbarOpen"
+                :class="navbarOpen ? 'navbarTogglerActive' : ''"
+                aria-label="Toggle navigation menu"
+                class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
               >
-                <span :class="navbarOpen && 'transform rotate-45 top-[7px]' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-                <span :class="navbarOpen && 'opacity-0' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
-                <span :class="navbarOpen && 'top-[-8px] rotate-[135deg]' " class="relative my-[6px] block h-[2px] w-[30px] bg-white"></span>
+                <span
+                  :class="navbarOpen ? 'transform rotate-45 top-[7px]' : ''"
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-white transition-all"
+                ></span>
+                <span
+                  :class="navbarOpen ? 'opacity-0' : ''"
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-white transition-opacity"
+                ></span>
+                <span
+                  :class="navbarOpen ? 'top-[-8px] rotate-[135deg]' : ''"
+                  class="relative my-[6px] block h-[2px] w-[30px] bg-white transition-all"
+                ></span>
               </button>
+
+              <!-- Navigation Menu -->
               <nav
-                :class="!navbarOpen && 'hidden' "
-                id="navbarCollapse"
-                class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent py-3 lg:py-0 lg:px-4 lg:shadow-none xl:px-6"
+                :class="navbarOpen ? 'block' : 'hidden'"
+                class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-bg-color shadow-lg py-3 lg:static lg:block lg:w-full lg:max-w-full lg:bg-transparent lg:shadow-none lg:py-0 lg:px-4 xl:px-6"
               >
-                <ul class="blcok lg:flex">
+                <ul class="block lg:flex">
                   <li class="group relative">
-                    <a href="index.html" class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"> Home </a>
-                  </li>
-                  <li class="group relative">
-                    <a href="explore-items.html" class="mx-8 flex py-2 text-base font-semibold text-white group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"> Explore </a>
-                  </li>
-                  <!-- <li class="group submenu-item relative">
                     <a
-                      href="javascript:void(0)"
-                      @click="submenuOpen = !submenuOpen"
-                      class="relative mx-8 flex py-2 text-base font-semibold text-[#bababa] after:absolute after:right-1 after:top-1/2 after:mt-[-2px] after:h-2 after:w-2 after:translate-y-[-50%] after:rotate-45 after:border-b-2 after:border-r-2 after:border-current group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:pl-0 lg:pr-4 lg:after:right-0 xl:ml-12"
+                      href="index.html"
+                      class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:inline-flex lg:py-6 lg:px-0"
                     >
-                      Pages
+                      Home
                     </a>
-                    <div
-                      :class="submenuOpen ? 'block' : 'hidden' "
-                      class="submenu relative top-full left-0 w-[250px] rounded-md bg-dark p-4 transition-[top] duration-300 group-hover:opacity-100 lg:invisible lg:absolute lg:top-[110%] lg:block lg:opacity-0 lg:shadow-lg lg:group-hover:visible lg:group-hover:top-full"
-                    >
-                      <a href="explore-items.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Explore Items </a>
-
-                      <a href="item-details.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Item Details </a>
-                      <a href="create-item.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Create Item </a>
-
-                      <a href="connect-wallet.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Connect Wallet </a>
-                      <a href="support.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Support </a>
-                      <a href="signin.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Sign In Page </a>
-                      <a href="signup.html" class="block rounded-sm py-[10px] px-4 text-sm font-medium text-[#bababa] hover:text-white"> Sign Up Page </a>
-                    </div>
-                  </li> -->
+                  </li>
                   <li class="group relative">
-                    <a href="support.html" class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"> Support </a>
+                    <a
+                      href="explore-items.html"
+                      class="mx-8 flex py-2 text-base font-semibold text-white group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"
+                    >
+                      Explore
+                    </a>
+                  </li>
+                  <li class="group relative">
+                    <a
+                      href="support.html"
+                      class="mx-8 flex py-2 text-base font-semibold text-[#bababa] group-hover:text-white lg:mr-0 lg:ml-8 lg:inline-flex lg:py-6 lg:px-0 xl:ml-12"
+                    >
+                      Support
+                    </a>
                   </li>
                 </ul>
               </nav>
             </div>
+
+            <!-- Search -->
             <div class="hidden justify-end pr-16 sm:flex lg:pr-0">
               <div class="group relative hidden md:flex">
-                <button class="py-3 px-7 text-base font-semibold text-body-color transition hover:text-primary lg:px-4 xl:px-7" name="search" aria-label="search">
-                  <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <button
+                  class="py-3 px-7 text-base font-semibold text-body-color transition hover:text-primary lg:px-4 xl:px-7"
+                  name="search"
+                  aria-label="search"
+                >
+                  <svg
+                    width="26"
+                    height="26"
+                    viewBox="0 0 26 26"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
                     <path
                       d="M10.2917 3.25C12.1592 3.25 13.9503 3.99189 15.2709 5.31246C16.5914 6.63303 17.3333 8.4241 17.3333 10.2917C17.3333 12.0358 16.6942 13.6392 15.6433 14.8742L15.9358 15.1667H16.7917L22.2083 20.5833L20.5833 22.2083L15.1667 16.7917V15.9358L14.8742 15.6433C13.6392 16.6942 12.0358 17.3333 10.2917 17.3333C8.4241 17.3333 6.63303 16.5914 5.31246 15.2709C3.99189 13.9503 3.25 12.1592 3.25 10.2917C3.25 8.4241 3.99189 6.63303 5.31246 5.31246C6.63303 3.99189 8.4241 3.25 10.2917 3.25ZM10.2917 5.41667C7.58333 5.41667 5.41667 7.58333 5.41667 10.2917C5.41667 13 7.58333 15.1667 10.2917 15.1667C13 15.1667 15.1667 13 15.1667 10.2917C15.1667 7.58333 13 5.41667 10.2917 5.41667Z"
                       fill="currentColor"
                     />
                   </svg>
                 </button>
-                <div class="invisible absolute top-[110%] right-0 w-[250px] rounded-md bg-dark p-3 opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100">
+
+                <div
+                  class="invisible absolute top-[110%] right-0 w-[250px] rounded-md bg-dark p-3 opacity-0 transition-all group-hover:visible group-hover:top-full group-hover:opacity-100"
+                >
                   <form class="flex">
-                    <input type="text" placeholder="Search here..." class="w-full bg-transparent py-2 px-4 text-white outline-hidden" />
-                    <button class="text-white" name="search-button" aria-label="search-button">
-                      <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <input
+                      type="text"
+                      placeholder="Search here..."
+                      class="w-full bg-transparent py-2 px-4 text-white outline-none"
+                    />
+                    <button
+                      type="submit"
+                      class="text-white"
+                      name="search-button"
+                      aria-label="search-button"
+                    >
+                      <svg
+                        width="26"
+                        height="26"
+                        viewBox="0 0 26 26"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
                         <path
                           d="M10.2917 3.25C12.1592 3.25 13.9503 3.99189 15.2709 5.31246C16.5914 6.63303 17.3333 8.4241 17.3333 10.2917C17.3333 12.0358 16.6942 13.6392 15.6433 14.8742L15.9358 15.1667H16.7917L22.2083 20.5833L20.5833 22.2083L15.1667 16.7917V15.9358L14.8742 15.6433C13.6392 16.6942 12.0358 17.3333 10.2917 17.3333C8.4241 17.3333 6.63303 16.5914 5.31246 15.2709C3.99189 13.9503 3.25 12.1592 3.25 10.2917C3.25 8.4241 3.99189 6.63303 5.31246 5.31246C6.63303 3.99189 8.4241 3.25 10.2917 3.25ZM10.2917 5.41667C7.58333 5.41667 5.41667 7.58333 5.41667 10.2917C5.41667 13 7.58333 15.1667 10.2917 15.1667C13 15.1667 15.1667 13 15.1667 10.2917C15.1667 7.58333 13 5.41667 10.2917 5.41667Z"
                           fill="currentColor"
@@ -115,6 +143,7 @@
                 </div>
               </div>
             </div>
+            <!-- End Search -->
           </div>
         </div>
       </div>
@@ -124,13 +153,26 @@
     <!-- ==== Breadcrumb Section Start ==== -->
     <section class="pt-[150px] pb-24">
       <div class="container">
-        <div class="rounded-lg border-2 border-stroke bg-bg-color py-5 px-8">
+        <div
+          class="rounded-lg border-2 border-stroke bg-bg-color py-5 px-8"
+        >
           <ul class="flex items-center">
-            <li class="flex items-center text-base font-medium text-white">
-              <a href="javascript:void(0)" class="text-white hover:text-primary"> Home </a>
+            <li
+              class="flex items-center text-base font-medium text-white"
+            >
+              <a
+                href="javascript:void(0)"
+                class="text-white hover:text-primary"
+              >
+                Home
+              </a>
               <span class="px-3"> / </span>
             </li>
-            <li class="flex items-center text-base font-medium text-white">Explore</li>
+            <li
+              class="flex items-center text-base font-medium text-white"
+            >
+              Explore
+            </li>
           </ul>
         </div>
       </div>
